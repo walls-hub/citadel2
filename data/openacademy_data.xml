@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_daenerys" model="openacademy.partner">
+        <field name="name">Daenerys Targaryan</field>
+        <field name="instructor" eval="True"/>
+    </record>
+
+    <record id="partner_tyrion" model="openacademy.partner">
+        <field name="name">Tyrion Lannister</field>
+        <field name="instructor" eval="True"/>
+    </record>
+
+    <record id="partner_arya" model="openacademy.partner">
+        <field name="name">Arya Stark</field>
+    </record>
+
+    <record id="course_dragon" model="openacademy.course">
+        <field name="name">Dragon 101</field>
+        <field name="description">You will learn how to train your dragon</field>
+        <field name="responsible_id" ref="partner_daenerys"/>
+        <field name="level">1</field>
+    </record>
+
+    <record id="session_dragon1" model="openacademy.session">
+        <field name="name">Dragon 101 - Session 1</field>
+        <field name="duration">5</field>
+        <field name="instructor_id" ref="partner_tyrion"/>
+        <field name="course_id" ref="course_dragon"/>
+        <field name="state">confirmed</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="course_view">
+            <field name="name">Course</field>
+            <field name="res_model">openacademy.course</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> Click create to - Enter your Class Information
+                </p>
+            </field>
+        </record>
+
+    <record model="ir.actions.act_window" id="partner_view">
+            <field name="name">Partner</field>
+            <field name="res_model">openacademy.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> Click create to - Enter your Class Information
+                </p>
+            </field>
+        </record>
+
+     <record model="ir.actions.act_window" id="session_view">
+            <field name="name">Session</field>
+            <field name="res_model">openacademy.session</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> Click create to - Enter your Class Information
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="Academy" name="Open Academy-2"   />
+
+        <menuitem id="Course" name="Course" parent="Academy"
+                  action="course_view"/>
+
+        <menuitem id="Partner" name="Partner" parent="Academy"
+                  action="partner_view"/>
+
+        <menuitem id="Session" name="Session" parent="Academy"
+                  action="session_view"/>
+
+
+
+</odoo>
